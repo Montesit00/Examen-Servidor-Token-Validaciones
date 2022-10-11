@@ -5,6 +5,7 @@ const conectDb = require('./src/conexion/conexion.bd');
 
 
 const dato = express();
+conectDb();
 
 dato.use(express.json());
 

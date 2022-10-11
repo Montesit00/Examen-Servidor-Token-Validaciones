@@ -1,5 +1,14 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://monte:monte123@monte.xnfkexl.mongodb.net/progra?retryWrites=true&w=majority')
-.then(()=>console.log('Conectado'))
-.catch((err)=>console.log(err))
+const dbConnect = async () => {
+
+    try {
+        mongoose.connect('mongodb://127.0.0.1:27017/taskdb')
+        console.log('Base de datos conectada');    
+    } catch (error) {
+        console.log('Error al conectar la base de datos', error.message);
+    }
+}
+
+
+module.exports = dbConnect;
