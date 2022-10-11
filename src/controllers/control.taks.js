@@ -1,16 +1,41 @@
-const Tarea = require("../models/tareas");
+const Task = require("../models/tareas");
 
 const controlTarea = {}
 
-controlTarea.getTarea = async (req,res) => {
-    const tasks = await Tarea.find({ isActive: true });
+controlTarea.createTask = async (req, res) => {
+    const { title, description } = req.body;
 
-    return res.render('index', {tasks});
-};
+    const task = new Task({
+        title,
+        description,
+        userId: req.user._id
+    });
+
+
+    try {
+        const newTask = await task.save();
+
+        return res.json({
+            msg: 'Tarea creada correctamente',
+            newTask
+        })
+    } catch (error) {
+        return res.status(500).json({
+            msg:'Error al crear la tarea'
+        })
+    }
+}
+
+controlTarea.getTask = async (req, res) => {
+    const tasks = await Task.find({ userId: req.user._id })
+    .populate('userId', ['username','email'])
+    return res.json(tasks);
+}
+
 
 controlTarea.postTarea = async (req, res) => {
     const {titulo,descrip} = req.body;
-    const newTarea = new Tarea({
+    const newTarea = new Task({
         titulo,
         descrip
     }); 
@@ -20,7 +45,7 @@ controlTarea.postTarea = async (req, res) => {
     return res.json({msg: 'Tarea creada correctamente',tarea});
 }
 
-controlTarea.putTarea = async (req,res) => {
+controlTarea.putTask = async (req,res) => {
     const id = req.params.id;
     const { titulo, descripcion, ...otroDatos } = req.body;
 
@@ -31,7 +56,7 @@ controlTarea.putTarea = async (req,res) => {
     };
 
     try {
-        const tareaActualizada = await Tasks.findByIdAndUpdate(id, { titulo, descripcion })
+        const tareaActualizada = await Task.findByIdAndUpdate(id, { titulo, descripcion })
 
         return res.json({
             msg: 'Tarea actualizada correctamente',
@@ -43,7 +68,7 @@ controlTarea.putTarea = async (req,res) => {
         })
     }
 };
-controlTarea.deleteTarea = async (req,res) => {
+controlTarea.deleteTask = async (req,res) => {
     const id = req.params.id;
 
     try {

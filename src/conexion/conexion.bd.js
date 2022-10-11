@@ -1,14 +1,17 @@
 const mongoose = require('mongoose');
 
-const dbConnect = async () => {
-
+const dbConnect = () => {
     try {
-        mongoose.connect('mongodb://127.0.0.1:27017/taskdb')
-        console.log('Base de datos conectada');    
+        mongoose.connect(process.env.URI_MONGODB, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    });
+
+    console.log('Conectado a la Base de Datos');
     } catch (error) {
-        console.log('Error al conectar la base de datos', error.message);
+        console.log('Error al conectar la Base de Datos');
+        console.log(error.message);
     }
 }
-
 
 module.exports = dbConnect;

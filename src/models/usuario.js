@@ -1,11 +1,11 @@
 const { model, Schema } = require('mongoose');
 
 const UserSchema = new Schema({
-    usuario: {
+    username: {
         type: String,
         required: true,
     },
-    contraseña: {
+    password: {
         type: String,
         required: true
     },
@@ -14,15 +14,24 @@ const UserSchema = new Schema({
         required: true,
         unique: true
     },
-    active: {
+    isActive: {
         type: Boolean,
         required: true,
         default: true,
     },
-
+    role:{
+        type:Array,
+    }
 }, {
     versionKey: false,
     timestamps: true
 });
+
+UserSchema.methods.toJSON = function() {
+    const { password, _id, ...user } = this.toObject();
+    user.uid = _id;
+
+    return user;
+}
 
 module.exports = model('Users', UserSchema);

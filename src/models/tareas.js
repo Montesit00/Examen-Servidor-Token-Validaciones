@@ -9,11 +9,21 @@ const tareaSchema = new Schema({
         type: String,
         required: true
     },
-    active: {
+    isActive: {
         type: Boolean,
         required: true,
         default: true,
     },
+    isDone:{
+        type:Boolean,
+        default:false
+    },
+    userId:{
+        type:Schema.Types.ObjectId, ref: 'User'
+    },
+    categories: [
+        { type: Schema.Types.ObjectId, ref: 'Categories' }
+    ]
 }, {
     versionKey: false,
     timestamps: true

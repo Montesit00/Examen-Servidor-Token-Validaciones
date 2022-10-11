@@ -1,22 +1,32 @@
 //Conexiones
 const path = require('path');
-const express = require('express');
-const conectDb = require('./src/conexion/conexion.bd');
+const express = require('express');// importo librerias
+const cors = require('cors');
+const morgan = require('morgan');
 
+const conectDb = require('./src/conexion/conexion.bd');//importo la funcion con la bd
+require('dotenv').config();
 
-const dato = express();
-conectDb();
+//inicializaciones
+const dato = express(); //inicializo la libreria express
+conectDb();//inicializo la funcion
 
-dato.use(express.json());
+//configuraciones
+const port = process.env.PORT
 
-//Uso los datos de los otros archivos
+//middlewares
+dato.use(cors());
+dato.use(morgan('dev'));
+dato.use(express.json());//para que el servidor comprenda los archivos en formato de json
+
+//Uso los datos de los otros archivos/ importacion de rutas
 dato.use(require('./src/rutas/rutas.user'))
 dato.use(require('./src/rutas/rutas.taks'))
-
+dato.use(require('./src/rutas/rutas.auth'))
 //recurso estatico
 dato.use(express.static(path.join(__dirname, "public")))
 
 //Compruebo si funciona el servidor
-dato.listen(3000,()=>{
+dato.listen(port,()=>{
     console.log('Funciona')
 })

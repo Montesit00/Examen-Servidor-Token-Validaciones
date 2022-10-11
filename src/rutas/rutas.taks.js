@@ -1,15 +1,15 @@
-const routerTask = require('express').Router();
+const router = require('express').Router();
+const { createTask, getTask } = require('../controllers/control.taks');
 
-const {
-    getTarea,
-    putTarea,
-    postTarea,
-    deleteTarea
-} = require('../controllers/control.taks')
+const validarJWT = require('../middlewares/validar-jwt');
 
-routerTask.get('/tarea',getTarea)
-routerTask.put('/tarea',putTarea)
-routerTask.post('/tarea',postTarea)
-routerTask.delete('/tarea',deleteTarea)
+router.post('/task', [
+    validarJWT,
+], createTask);
 
-module.exports = routerTask;
+
+router.get('/task', [
+    validarJWT
+], getTask);
+
+module.exports = router;
