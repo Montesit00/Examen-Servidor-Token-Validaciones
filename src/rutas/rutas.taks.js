@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { createTask,getTaskID, getTask, putTask } = require('../controllers/control.taks');
+const { createTask,getTaskID, getTask, putTask, deleteTask } = require('../controllers/control.taks');
 
 const validarJWT = require('../middlewares/validar-jwt');
 
@@ -16,6 +16,11 @@ router.get('/mostrartarea', [
 router.put('/actualizartarea/:id',[
     validarJWT
 ],putTask)
+
+
+router.delete('/eliminartarea/:id',[
+    validarJWT
+],deleteTask)
 
 
 module.exports = router;

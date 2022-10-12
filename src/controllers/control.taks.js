@@ -90,7 +90,7 @@ controlTarea.deleteTask = async (req,res) => {
     const id = req.params.id;
 
     try {
-        await Tarea.findByIdAndUpdate(id, { isActive: false })
+        await Task.findByIdAndUpdate(id, { isActive: false })
         return res.json('Tarea eliminada correctamente');
     } catch (err) {
         console.log(err.message)
