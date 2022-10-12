@@ -3,7 +3,8 @@ const User = require('../models/usuario');
 
 const validarJWT = async (req, res, next) => {
     
-    let token = req.headers.authorization;
+    let token = req.header('token');//obtenemos el token que esta en el header(una vez generado el token copiamos ese token
+    // y lo ponemos en el header del posmant)
 
     // Se verifica si es que existe el token en la petición
     if (!token) {

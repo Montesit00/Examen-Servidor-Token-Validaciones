@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 
 const ctrlAuth = {};
 
+
 ctrlAuth.iniciarSesion = async (req, res) => {
 
     const { username, password } = req.body;
@@ -28,6 +29,7 @@ ctrlAuth.iniciarSesion = async (req, res) => {
         }
 
         // Verificar la contraseña
+        //comparesSync --> es para verificar si la contraseña esta bien scriptada asi poder validar la contra
         const validPassword = bcrypt.compareSync(password, user.password);
 
         if (!validPassword) {

@@ -2,8 +2,9 @@ const router= require('express').Router();
 
 const {
     getHome,
+    getUserID,
     putHome,
-    postHome,
+    postHome, 
     deleteHome
 } = require('../controllers/control.user')
 
@@ -15,10 +16,11 @@ router.get('/user',[
     esAdmin
 ] ,getHome);
 
+//Obtener usuario por id
+router.get('/user/:idUser',getUserID);
+
 // Crear nuevo usuario
-router.post('/user', [
-    validarJWT
-], postHome);
+router.post('/user', [], postHome);
 
 // Editar usuario, requiere ID de usuario
 router.put('/user/:id', [
@@ -26,6 +28,6 @@ router.put('/user/:id', [
 ], putHome);
 
 // Eliminar usuario, requiere ID de usuario
-router.delete('/user', [], deleteHome);
+router.delete('/user/:id', [validarJWT], deleteHome);
 
 module.exports = router;

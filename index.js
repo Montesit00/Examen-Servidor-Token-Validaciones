@@ -23,6 +23,7 @@ dato.use(express.json());//para que el servidor comprenda los archivos en format
 dato.use(require('./src/rutas/rutas.user'))
 dato.use(require('./src/rutas/rutas.taks'))
 dato.use(require('./src/rutas/rutas.auth'))
+
 //recurso estatico
 dato.use(express.static(path.join(__dirname, "public")))
 

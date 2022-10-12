@@ -14,12 +14,8 @@ const tareaSchema = new Schema({
         required: true,
         default: true,
     },
-    isDone:{
-        type:Boolean,
-        default:false
-    },
     userId:{
-        type:Schema.Types.ObjectId, ref: 'User'
+        type:Schema.Types.ObjectId, ref: 'users'
     },
     categories: [
         { type: Schema.Types.ObjectId, ref: 'Categories' }

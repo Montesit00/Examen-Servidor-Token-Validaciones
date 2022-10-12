@@ -1,13 +1,36 @@
 const User = require("../models/usuario");
 const bcrypt = require('bcrypt');
+const generarJWT = require('../helpers/generar-jwt')
 const controlHome = {}
 
 controlHome.getHome = async (req,res) => {
-     // Se consultan todos los documentos de la base de datos.
-     const users = await User.find();
+    try {
+       // Se consultan todos los documentos de la base de datos.
+       const users = await User.find({isActive:true});
+       // Se devuelve al cliente un arreglo con los datos de los usuarios.
+       return res.json(users)   
+    } catch (error) {
+        return res.status(404).json({
+            msg:'No se encontro el usuario'
+        })
+    }
+}
 
-     // Se devuelve al cliente un arreglo con los datos de los usuarios.
-     return res.json(users)
+controlHome.getUserID = async (req, res) => {
+    try {
+        const UserID = req.params.idUser;
+        const Users = await User.findOne({$and: [{"_id":UserID},{isActive:true}]});
+
+        if (Users) {
+            return res.json({
+                message: 'Usuario encontrado',
+                Users
+            });
+        }error
+
+    } catch(error) {
+        return res.status(404).json({message: 'No se encontro el usuario'})  
+    }
 }
 
 controlHome.postHome = async (req,res) => {

@@ -3,11 +3,11 @@ const Task = require("../models/tareas");
 const controlTarea = {}
 
 controlTarea.createTask = async (req, res) => {
-    const { title, description } = req.body;
+    const { titulo, descrip } = req.body;
 
     const task = new Task({
-        title,
-        description,
+        titulo,
+        descrip,
         userId: req.user._id
     });
 
@@ -25,6 +25,24 @@ controlTarea.createTask = async (req, res) => {
         })
     }
 }
+
+controlTarea.getTaskID = async (req, res) => {
+    try {
+        const TaskID = req.params.idTask;
+        const Tasks = await Task.findOne({$and: [{"_id":TaskID},{isActive:true}]});
+
+        if (Tasks) {
+            return res.json({
+                message: 'Tarea encontrado',
+                Tasks
+            });
+        }error
+
+    } catch(error) {
+        return res.status(404).json({message: 'No se encontro la Tarea'})  
+    }
+}
+
 
 controlTarea.getTask = async (req, res) => {
     const tasks = await Task.find({ userId: req.user._id })
@@ -47,16 +65,16 @@ controlTarea.postTarea = async (req, res) => {
 
 controlTarea.putTask = async (req,res) => {
     const id = req.params.id;
-    const { titulo, descripcion, ...otroDatos } = req.body;
+    const { titulo, descrip, ...otroDatos } = req.body;
 
-    if (!id || !descripcion || !titulo) {
+    if (!id || !descrip || !titulo) {
         return res.status(400).json({
             msg: 'No viene id en la petición',
         });
     };
 
     try {
-        const tareaActualizada = await Task.findByIdAndUpdate(id, { titulo, descripcion })
+        const tareaActualizada = await Task.findByIdAndUpdate(id, { titulo, descrip })
 
         return res.json({
             msg: 'Tarea actualizada correctamente',
