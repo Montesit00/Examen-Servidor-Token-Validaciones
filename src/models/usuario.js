@@ -21,6 +21,7 @@ const UserSchema = new Schema({
     },
     role:{
         type:Array,
+        default:"normalUser"
     }
 }, {
     versionKey: false,

@@ -17,7 +17,7 @@ router.get('/user',[
 ] ,getHome);
 
 //Obtener usuario por id
-router.get('/user/:idUser',getUserID);
+router.get('/user/:idUser',[],getUserID);
 
 // Crear nuevo usuario
 router.post('/user', [], postHome);

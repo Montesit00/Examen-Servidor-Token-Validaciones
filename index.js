@@ -1,5 +1,4 @@
 //Conexiones
-const path = require('path');
 const express = require('express');// importo librerias
 const cors = require('cors');
 const morgan = require('morgan');
@@ -14,7 +13,7 @@ conectDb();//inicializo la funcion
 //configuraciones
 const port = process.env.PORT
 
-//middlewares
+//middlewares: son servicios de terceros
 dato.use(cors());
 dato.use(morgan('dev'));
 dato.use(express.json());//para que el servidor comprenda los archivos en formato de json
@@ -23,9 +22,6 @@ dato.use(express.json());//para que el servidor comprenda los archivos en format
 dato.use(require('./src/rutas/rutas.user'))
 dato.use(require('./src/rutas/rutas.taks'))
 dato.use(require('./src/rutas/rutas.auth'))
-
-//recurso estatico
-dato.use(express.static(path.join(__dirname, "public")))
 
 //Compruebo si funciona el servidor
 dato.listen(port,()=>{

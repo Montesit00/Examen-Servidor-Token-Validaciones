@@ -1,6 +1,5 @@
 const User = require("../models/usuario");
 const bcrypt = require('bcrypt');
-const generarJWT = require('../helpers/generar-jwt')
 const controlHome = {}
 
 controlHome.getHome = async (req,res) => {
@@ -35,7 +34,7 @@ controlHome.getUserID = async (req, res) => {
 
 controlHome.postHome = async (req,res) => {
      // Se obtienen los datos enviados por método POST
-     const { username, password: passwordRecibida, email } = req.body;
+     const { username, password: passwordRecibida, email, role } = req.body;
 
      // Encriptar la contraseña del usuario
      const newPassword = bcrypt.hashSync(passwordRecibida, 10);
@@ -44,7 +43,8 @@ controlHome.postHome = async (req,res) => {
      const newUser = new User({
          username,
          password: newPassword,
-         email
+         email,
+         role
      });
  
      // Se almacena en la base de datos con método asícrono .save()
