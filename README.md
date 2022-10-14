@@ -14,7 +14,7 @@ npm start
 
 # Uso:
 
-El usuario y tarea no estan existen en la bd
+*El usuario y tarea usados de ejemplo no estan existen en la bd*
 
 ### Lo ideal para comenzar es registrarte como usuario:
 #### HTTP: **POST**-> http://localhost:5000/user
