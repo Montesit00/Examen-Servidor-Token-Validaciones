@@ -12,8 +12,7 @@ const esAdmin = require('../middlewares/es-admin');
 const validarJWT = require('../middlewares/validar-jwt');
 
 router.get('/user',[
-    validarJWT,
-    esAdmin
+    validarJWT
 ] ,getHome);
 
 //Obtener usuario por id
