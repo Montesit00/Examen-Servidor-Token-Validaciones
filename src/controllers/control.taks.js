@@ -72,7 +72,7 @@ controlTarea.putCompleto =  async (req,res) =>{
         const taskCompleta = await Task.findByIdAndUpdate(id, { titulo, descrip,isDone:true})
         if (taskCompleta === null){
             return res.status(400).json({
-                msg:'Error al actualizar la tarea - id incorrecto.'
+                msg:'Error al completar la tarea - id incorrecto.'
             })
         }
         res.json("Tarea marcada como completada.")
