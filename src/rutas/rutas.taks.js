@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { createTask,getTaskID, getTask, putTask, deleteTask } = require('../controllers/control.taks');
+const { createTask,getTaskID, getTask, putTask, deleteTask, putCompleto } = require('../controllers/control.taks');
 
 const validarJWT = require('../middlewares/validar-jwt');
 
@@ -12,6 +12,10 @@ router.get('/task/:idTask',getTaskID);
 router.get('/mostrartarea', [
     validarJWT
 ], getTask);
+
+router.put('/tareacompleta/:id',[
+    validarJWT
+],putCompleto)
 
 router.put('/actualizartarea/:id',[
     validarJWT

@@ -14,6 +14,10 @@ const tareaSchema = new Schema({
         required: true,
         default: true,
     },
+    isDone:{
+        type:Boolean,
+        default:false
+    },
     userId:{
         type:Schema.Types.ObjectId, ref: 'users'
     },

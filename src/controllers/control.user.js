@@ -68,8 +68,7 @@ controlHome.putHome = async (req,res) => {
         const dataUpdated = await User.findByIdAndUpdate(userId, data, { new: true});
 
         return res.json({
-            msg: 'Usuario actualizado correctamente',
-            dataUpdated
+            msg: 'Usuario actualizado correctamente'
         })
     } catch (error) {
         return res.status(500).json({
