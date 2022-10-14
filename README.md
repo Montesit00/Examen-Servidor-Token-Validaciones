@@ -13,6 +13,9 @@ npm run dev
 npm start
 
 # Uso:
+
+El usuario y tarea no estan existen en la bd
+
 ### Lo ideal para comenzar es registrarte como usuario:
 #### HTTP: **POST**-> http://localhost:5000/user
 
@@ -31,11 +34,11 @@ npm start
 Aqui no se ingresa el email solo "username" y "password"
 #### HTTP: **POST** -> http://localhost:5000/login
 - *=> requiere del siguiente body:*
-	> {
+> {
 
-"username":"ingresesuusuarioyaregistradoanteriormente",
+"username":"muestra",
 
-"password":"ingresesucontraseñayaregistradaanteriormente"
+"password":"muestra12"
 
 }
 
