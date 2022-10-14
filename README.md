@@ -85,7 +85,7 @@ Aqui necesita el id de la tarea que se le dio al crea la anterior tarea(prueba1)
 
 #### HTTP: **GET** =>http://localhost:5000/mostrartarea
 * Sirve para ver la información de tus tareas.
-#### HTTP:**DELETE** =>http://localhost:5000/eliminartarea/:id
+#### HTTP:**DELETE** =>http://localhost:5000/eliminartarea/:idtask
 * Para eliminar una tarea:
   * :idTarea hace referencia al "_id" de la tarea a completar
 
