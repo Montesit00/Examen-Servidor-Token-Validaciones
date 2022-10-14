@@ -44,7 +44,7 @@ Aqui no se ingresa el email solo "username" y "password"
 
 ##  Una vez reciba el Token, cópielo y uselo como header Authorization en su cliente y así acceder a las funciones:
 En este caso se neceista el url del put + la id del usuario
-#### HTTP: **PUT**=> http://localhost:5000/user/:idusuario
+#### HTTP: **PUT**=> http://localhost:5000/user/:id
 
 - **=> requiere del siguiente body:**
 > {
@@ -59,7 +59,7 @@ En este caso se neceista el url del put + la id del usuario
 
 #### HTTP: **GET** =>http://localhost:5000/user
 * Sirve para ver la información de tu cuenta.
-#### HTTP: **DELETE**=> http://localhost:3000/user/:idusuario
+#### HTTP: **DELETE**=> http://localhost:3000/user/:id
 * En caso de que  quieras eliminar la cuenta
 
 ## Funciones de Tareas con el Token:
@@ -72,7 +72,7 @@ Aqui seguiremos usando el mismo token del anterior usuario en caso de que no lo 
 
 "descrip":"prueba examen2"
 }
-#### HTTP: **PUT**=> http://localhost:5000/actualizartarea/:idtask
+#### HTTP: **PUT**=> http://localhost:5000/actualizartarea/:id
 Aqui necesita el id de la tarea que se le dio al crea la anterior tarea(prueba1)
 - **=>requiere del siguiente body**
 > {
@@ -83,9 +83,12 @@ Aqui necesita el id de la tarea que se le dio al crea la anterior tarea(prueba1)
 
 }
 
+#### HTTP: **PUT** =>http://localhost:5000/tareacompleta/:id
+* Sirve para completar la tarea, en caso de completar la terea no aparece en el buscador general solo si se lo busca por id.
+
 #### HTTP: **GET** =>http://localhost:5000/mostrartarea
 * Sirve para ver la información de tus tareas.
-#### HTTP:**DELETE** =>http://localhost:5000/eliminartarea/:idtask
+#### HTTP:**DELETE** =>http://localhost:5000/eliminartarea/:id
 * Para eliminar una tarea:
   * :idTarea hace referencia al "_id" de la tarea a completar
 
