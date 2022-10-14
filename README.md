@@ -59,7 +59,7 @@ En este caso se neceista el url del put + la id del usuario
 
 #### HTTP: **GET** =>http://localhost:5000/user
 * Sirve para ver la información de tu cuenta.
-#### HTTP: **DELETE**=> http://localhost:3000/user
+#### HTTP: **DELETE**=> http://localhost:3000/user/:idusuario
 * En caso de que  quieras eliminar la cuenta
 
 ## Funciones de Tareas con el Token:
