@@ -25,4 +25,10 @@ const tareaSchema = new Schema({
     timestamps: true
 });
 
+tareaSchema.methods.toJSON = function(){
+    const {_id,...task}=this.toObject();
+    task.uid = _id;
+    return task
+}
+
 module.exports = model('Taks', tareaSchema);

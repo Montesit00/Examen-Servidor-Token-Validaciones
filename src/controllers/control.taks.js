@@ -76,6 +76,12 @@ controlTarea.putTask = async (req,res) => {
     try {
         const tareaActualizada = await Task.findByIdAndUpdate(id, { titulo, descrip })
 
+        if(actualizarTarea == null){
+            return res.status(400).json({
+                msg:"Error al actualizar la tarea - id incorrecto"
+            })
+        }
+
         return res.json({
             msg: 'Tarea actualizada correctamente',
         });
