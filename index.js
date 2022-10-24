@@ -13,7 +13,7 @@ conectDb();//inicializo la funcion
 //configuraciones
 const port = process.env.PORT
 
-//middlewares: son servicios de terceros
+//middlewares: son servicios de terceros / servicios que se ejecutan antes de realizar una peticion
 dato.use(cors());
 dato.use(morgan('dev'));
 dato.use(express.json());//para que el servidor comprenda los archivos en formato de json

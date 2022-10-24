@@ -89,13 +89,24 @@ controlTarea.putCompleto =  async (req,res) =>{
 
 controlTarea.putTask = async (req,res) => {
     const id = req.params.id;
+
+    const userID =req.user
+
     const { titulo, descrip, ...otroDatos } = req.body;
 
+    const tareaModificar = {titulo,descrip};
+    
     if (!id || !descrip || !titulo) {
         return res.status(400).json({
             msg: 'No viene id en la petición',
         });
     };
+
+    if(userID != tareaModificar.userId){
+        return res.json({
+            msg:'No tiene permisos para actualizar'
+        })
+    }
 
     try {
         const tareaActualizada = await Task.findByIdAndUpdate(id, { titulo, descrip })
@@ -118,6 +129,12 @@ controlTarea.putTask = async (req,res) => {
 };
 controlTarea.deleteTask = async (req,res) => {
     const id = req.params.id;
+    const userID = req.user
+    if(id.userId != userID){
+        return res.json({
+            msg:'No tiene permiso para eliminar esta tarea'
+        })
+    }
 
     try {
         await Task.findByIdAndUpdate(id, { isActive: false })
